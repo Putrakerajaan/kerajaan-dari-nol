@@ -1,0 +1,20 @@
+{
+ "day": 1, "diperbarui": "2026-11-02 17:00",
+ "warga": 1,
+ "ras": {"Manusia":1,"Elf":0,"Kurcaci":0,"Goblin":0,"Beastfolk":0},
+ "pekerjaan": {"Petani":0,"Nelayan":0,"Penebang":0,"Tukang":1,"Prajurit":0,"Pedagang":0,"Penyihir":0},
+ "produksi": {"Petani":{"gandum":4},"Nelayan":{"ikan":4},"Penebang":{"kayu":5},"Tukang":{"batu":2},"Prajurit":{},"Pedagang":{"emas":3},"Penyihir":{"emas":1}},
+ "makanPerWarga": 2,
+ "sumberdaya": {"kayu":10,"batu":0,"ikan":6,"gandum":0,"emas":5},
+ "kas": 5,
+ "warga_list": [{"kode":"KDN-0001","nama":"Putra","ras":"Manusia","pekerjaan":"Tukang","day":1,"catatan":"Penyelamat mahkota Raja dari ayam"}],
+ "bangunan": [
+  {"id":"panji","nama":"Panji Kerajaan","tile":"B16","jenis":"panji","status":"selesai","progres":100,"day":1,"usulan":"Hadiah Raja"},
+  {"id":"tenda","nama":"Tenda Putra","tile":"G8","jenis":"tenda","status":"selesai","progres":100,"day":1,"usulan":"Inisiatif Putra"},
+  {"id":"api","nama":"Api Unggun","tile":"F9","jenis":"api","status":"selesai","progres":100,"day":1,"usulan":"Inisiatif Putra"}
+ ],
+ "vote": {"judul":"Bangun apa dulu? Komen di TikTok, like terbanyak menang!","opsi":[
+  {"nama":"Rumah Kayu","like":0},{"nama":"Dermaga Ikan","like":0},{"nama":"Ladang Gandum","like":0},{"nama":"Jembatan ke Seberang","like":0}]},
+ "berita": ["DAY 1: Putra menerima tanah kosong dari Raja.","Pohon dan ikan melimpah di tepi sungai.","Tenda pertama berdiri di G8.","Follow = jadi warga. Komen = usul bangunan!"],
+ "riwayat": [{"day":1,"teks":"Panji Kerajaan ditancapkan di B16"},{"day":1,"teks":"Tenda Putra dibangun di G8, api unggun di F9"}]
+}

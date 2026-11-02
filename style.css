@@ -1,0 +1,14 @@
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:#1d2a1f;color:#f3ead2}
+header{display:flex;gap:14px;align-items:center;padding:10px 14px;background:#5a2d0c;border-bottom:3px solid #d4a72c}header b{color:#ffd86b}header>b{flex:1}
+nav{display:flex;background:#3a1e08}nav button{flex:1;padding:10px;border:0;background:none;color:#f3ead2;font-weight:600}nav .on{background:#d4a72c;color:#3a1e08}
+.tab{display:none;padding:10px}.tab.on{display:block}#peta{padding:0;position:relative}canvas{width:100%;height:calc(100vh - 90px);display:block;touch-action:none;background:#87b6d6}
+#tip{position:absolute;left:10px;bottom:10px;background:#000a;padding:8px 12px;border-radius:8px;max-width:80%}
+.card,#info>div{background:#2c3b2d;border:1px solid #4d6a4f;border-radius:10px;padding:12px;margin-bottom:10px}h3{margin:0 0 8px;color:#ffd86b}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}.it{background:#1d2a1f;padding:8px;border-radius:8px}.it b{font-size:20px;display:block}
+.plus{color:#7fe07f}.min{color:#ff7a6b}.bar{height:8px;background:#111;border-radius:4px;overflow:hidden;margin-top:4px}.bar i{display:block;height:100%;background:#d4a72c}
+input{width:100%;padding:10px;border-radius:8px;border:0;margin-bottom:10px}.mut{opacity:.7;font-size:13px}li{margin:6px 0}
+/* tema pastel v2 */
+body{background:#f4ecd8;color:#3a2e1a}header{background:#2f4a3a;border:0;color:#fbf4e2}header b{color:#fbf4e2}
+nav{background:#fbf4e2;border-top:1px solid #e2d6b8}nav button{color:#5a4a30}nav .on{background:#2f4a3a;color:#fbf4e2;border-radius:16px}
+canvas{background:#e9e3c4}#tip{background:#fbf4e2;color:#3a2e1a;border-radius:14px;box-shadow:0 2px 6px #0002}
+.card,#info>div{background:#fbf4e2;border:1px solid #e2d6b8;box-shadow:0 1px 4px #0001}h3{color:#2f4a3a}.it{background:#f1e6cc}.plus{color:#3d8a3d}.min{color:#c4453a}.bar{background:#e2d6b8}.bar i{background:#e2a33b}
