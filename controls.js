@@ -1,5 +1,5 @@
 // Kontrol peta: geser 1 jari/mouse, cubit 2 jari, roda mouse, ketuk 2x, tombol +/-.
-const ZMIN=.35,ZMAX=4;
+const ZMIN=.05,ZMAX=2.2;
 function clampCam(){if(!cv)return;const d=devicePixelRatio||1,W=cv.clientWidth,H=cv.clientHeight;cam.z=Math.min(ZMAX,Math.max(ZMIN,cam.z));
  let wx=-cam.x/(d*cam.z),wy=(H/2-H*.1-cam.y/d)/cam.z;const X=N*TW/2,Y=N*TH;
  wx=Math.max(-X,Math.min(X,wx));wy=Math.max(0,Math.min(Y,wy));cam.x=-wx*d*cam.z;cam.y=(H/2-H*.1-wy*cam.z)*d}

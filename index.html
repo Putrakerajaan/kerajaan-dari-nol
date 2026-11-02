@@ -1,11 +1,13 @@
 <!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Kerajaan dari Nol</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E👑%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"></head><body>
-<header><b>👑 Kerajaan dari Nol</b><span>DAY <b id="day"></b></span><span>WARGA <b id="warga"></b></span></header>
-<nav><button data-t="peta" class="on">Peta</button><button data-t="info">Info</button><button data-t="ktp">KTP</button><button data-t="riwayat">Riwayat</button><button data-t="akun">Akun</button></nav>
+<title>Desa Viralis · Kerajaan dari Nol</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Ctext y=%22.9em%22 font-size=%2290%22%3E👑%3C/text%3E%3C/svg%3E"><link rel="stylesheet" href="style.css"></head><body>
+<header><b>🏡 Desa Viralis <small class="seri">Kerajaan dari Nol</small></b><span class="gl">Putra: <b id="gelar"></b></span><span>DAY <b id="day"></b></span><span>WARGA <b id="warga"></b></span></header>
+<nav><button data-t="peta" class="on">Peta</button><button data-t="info">Info</button><button data-t="daftar">Daftar</button><button data-t="guild">Guild</button><button data-t="ktp">KTP</button><button data-t="riwayat">Riwayat</button><button data-t="akun">Akun</button></nav>
 <main>
 <section id="peta" class="tab on"><canvas id="map"></canvas><div id="tip">Ketuk petak / bangunan</div></section>
 <section id="info" class="tab"><div id="res"></div><div id="vote"></div><div id="pop"></div><div id="berita"></div><div id="bang"></div></section>
+<section id="daftar" class="tab"></section>
+<section id="guild" class="tab"></section>
 <section id="ktp" class="tab"><input id="q" placeholder="Cari kode KTP / nama (cth KDN-0001)"><div id="ktpout"></div></section>
 <section id="riwayat" class="tab"><ul id="riw"></ul></section>
-<section id="akun" class="tab card"><h3>Jadi Warga</h3><p>1. Follow akun TikTok Putra → kamu jadi warga baru.<br>2. Ras & pekerjaan diundi (atau tulis pilihanmu di komen).<br>3. Komen usulan bangunan, like terbanyak dibangun.<br>4. Cek KTP-mu di tab KTP.</p><p class="mut">Terakhir diperbarui: <span id="upd"></span></p></section>
-</main><script src="app.js"></script><script src="render.js"></script><script src="agents.js"></script><script src="controls.js"></script><script src="icons/ras_paths.js"></script><script src="d10.js"></script><script src="dice.js"></script></body></html>
+<section id="akun" class="tab card"><h3>Jadi Warga</h3><p>1. Follow akun TikTok Putra, lalu tunggu DM berisi kode rahasia.<br>2. Buka tab Daftar: masukkan username + kode, pilih pekerjaan & gender, lalu putar dadu ras.<br>3. Komen usulan bangunan, like terbanyak dibangun.<br>4. Cek KTP-mu di tab KTP.</p><p class="mut">Terakhir diperbarui: <span id="upd"></span></p></section>
+</main><script src="app.js"></script><script src="render.js"></script><script src="agents.js"></script><script src="controls.js"></script><script src="icons/ras_paths.js"></script><script src="d10.js"></script><script src="dice.js"></script><script src="https://cdn.jsdelivr.net/npm/appwrite@29.2.0"></script><script src="daftar.js"></script><script src="guild.js"></script><script src="login.js"></script></body></html>

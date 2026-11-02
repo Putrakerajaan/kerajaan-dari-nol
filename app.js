@@ -1,5 +1,5 @@
 // Kerajaan dari Nol – peta isometrik Canvas 2D (kode orisinal)
-const N=32,COLS=[..."ABCDEFGHIJKLMNOPQRSTUVWXYZ",..."ABCDEF"].map((x,i)=>i<26?x:"A"+x),TW=64,TH=32;let D,cv,cx,cam={x:0,y:0,z:Math.min(1,innerWidth/(N*TW+40))},sel=null;
+const N=64,ABC=[..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"],COLS=Array.from({length:N},(_,i)=>i<26?ABC[i]:ABC[Math.floor(i/26)-1]+ABC[i%26]),TW=128,TH=64;let D,cv,cx,cam={x:0,y:0,z:Math.min(1,innerWidth/(N*TW+40))},sel=null;
 const $=id=>document.getElementById(id);
 const ICON={kayu:"🪵",batu:"🪨",ikan:"🐟",gandum:"🌾",emas:"🪙"};
 function parseTile(t){const m=t.match(/^([A-Z]+)(\d+)$/);return{c:COLS.indexOf(m[1]),r:parseInt(m[2])-1}}
@@ -30,24 +30,24 @@ function drawB(b,x,y){const a=b.status=="selesai"?1:.55;cx.globalAlpha=a;
 function pick(px,py){const W=cv.width,H=cv.height,d=devicePixelRatio;const x=(px*d-W/2-cam.x)/(cam.z*d),y=(py*d-H*0.12-cam.y)/(cam.z*d)-TH/2;
  const c=Math.round((x/(TW/2)+y/(TH/2))/2),r=Math.round((y/(TH/2)-x/(TW/2))/2);return c>=0&&r>=0&&c<N&&r<N?{c,r}:null}
 function tap(e){const p=pick(e.offsetX,e.offsetY);if(!p)return;sel=p;const t=COLS[p.c]+(p.r+1),b=D.bangunan.find(b=>b.tile==t);
- const ter={air:"Sungai (banyak ikan)",pohon:"Hutan (kayu)",batu:"Batu",rumput:"Lahan kosong"}[terrain(p.c,p.r)],sisi=p.c<7?"Tepi kiri":p.c>8?"Tepi kanan (terkunci, perlu jembatan)":"Sungai";
- $("tip").innerHTML=b?`<b>${t} · ${b.nama}</b><br>Status: ${b.status} (${b.progres}%) · Day ${b.day}<br>Usulan: ${b.usulan}`:`<b>Petak ${t}</b><br>${ter} · ${sisi}`;draw()}
-function ui(){$("day").textContent=D.day;$("warga").textContent=D.warga.toLocaleString("id");$("upd").textContent=D.diperbarui;const B=balance();
- $("res").innerHTML=`<h3>Sumber Daya & Kas Kerajaan</h3><div class="grid">${Object.entries(D.sumberdaya).map(([k,v])=>`<div class="it">${ICON[k]} ${k}<b>${v}</b><span class="plus">+${B.p[k]}/hari</span></div>`).join("")}<div class="it">💰 Kas<b>${D.kas}</b>emas</div></div>
+ const ter={air:"Sungai (banyak ikan)",pohon:"Hutan (kayu)",batu:"Batu",rumput:"Lahan kosong",rumpun:"Padang rumput",bunga:"Bunga liar",bibit:"Semak",jembatan:"Jembatan kayu"}[terrain(p.c,p.r)]||"Lahan",sisi=locked(p.c,p.r)?"Wilayah terkunci":p.c<7?"Tepi barat sungai":p.c>8?"Seberang sungai":"Sungai";
+ $("tip").innerHTML=b&&b.jenis=="papan"?papanInfo(t):b?`<b>${t} · ${b.nama}</b><br>${{pos:"Pos jaga & kantor Kepala Desa Putra (½ petak).",api:"Api unggun tempat warga berkumpul (½ petak)."}[b.jenis]||""}${b.jenis=="pos"||b.jenis=="api"?"<br>":""}Status: ${b.status} (${b.progres}%) · Day ${b.day}<br>Usulan: ${b.usulan}`:`<b>Petak ${t}</b><br>${ter} · ${sisi}`;draw()}
+function ui(){$("gelar").textContent=gelarPutra();$("day").textContent=D.day;$("warga").textContent=D.warga.toLocaleString("id");$("upd").textContent=D.diperbarui;const B=balance();
+ $("res").innerHTML=`<h3>Sumber Daya & Kas Desa Viralis</h3><div class="grid">${Object.entries(D.sumberdaya).map(([k,v])=>`<div class="it">${ICON[k]} ${k}<b>${v}</b><span class="plus">+${B.p[k]}/hari</span></div>`).join("")}<div class="it">💰 Kas<b>${D.kas}</b>emas</div></div>
  <h3 style="margin-top:12px">Makanan Warga</h3><div class="grid"><div class="it">Kebutuhan<b>${B.makan}/hari</b>${D.makanPerWarga} per warga</div><div class="it">Produksi pangan<b>${B.food}/hari</b>ikan+gandum</div><div class="it">Neraca<b class="${B.net>=0?"plus":"min"}">${B.net>=0?"+":""}${B.net}</b>${B.net>=0?"Surplus":"Defisit"}</div><div class="it">Stok cukup<b>${B.hari}</b></div></div>`;
  const tot=D.vote.opsi.reduce((a,o)=>a+o.like,0)||1;$("vote").innerHTML=`<h3>🗳️ Voting Bangunan Berikutnya</h3><p class="mut">${D.vote.judul}</p>`+D.vote.opsi.map(o=>`<div>${o.nama} — ${o.like} like<div class="bar"><i style="width:${o.like/tot*100}%"></i></div></div>`).join("");
- $("pop").innerHTML=regionHTML()+gachaHTML()+`<h3>Penduduk</h3><div class="grid">${Object.entries(D.ras).map(([k,v])=>`<div class="it">${k}<b>${v}</b></div>`).join("")}</div><h3 style="margin-top:10px">Pekerjaan</h3><div class="grid">${Object.entries(D.pekerjaan).map(([k,v])=>{const q=(D.kuota||{})[k];return`<div class="it">${k}<b class="${q&&v>=q?"min":""}">${v}${q?"/"+q:""}</b>${q&&v>=q?"Penuh":""}</div>`}).join("")}</div>`;
- $("berita").innerHTML="<h3>📜 Berita Kerajaan</h3><ul>"+D.berita.map(b=>`<li>${b}</li>`).join("")+"</ul>";
+ $("pop").innerHTML=gelarHTML()+regionHTML()+gachaHTML()+`<h3>Penduduk</h3><div class="grid">${Object.entries(D.ras).map(([k,v])=>`<div class="it">${k}<b>${v}</b></div>`).join("")}</div><h3 style="margin-top:10px">Pekerjaan</h3><div class="grid">${Object.entries(D.pekerjaan).map(([k,v])=>{const q=(D.kuota||{})[k];return`<div class="it">${k}<b class="${q&&v>=q?"min":""}">${v}${q?"/"+q:""}</b>${q&&v>=q?"Penuh":""}</div>`}).join("")}</div>`;
+ $("berita").innerHTML="<h3>📜 Berita Desa Viralis</h3><ul>"+D.berita.map(b=>`<li>${b}</li>`).join("")+"</ul>";
  $("bang").innerHTML="<h3>🏗️ Bangunan</h3>"+D.bangunan.map(b=>`<div>${b.tile} · ${b.nama} — ${b.status} ${b.progres}%<div class="bar"><i style="width:${b.progres}%"></i></div></div>`).join("");
  $("riw").innerHTML=D.riwayat.map(r=>`<li><b>Day ${r.day}</b> — ${r.teks}</li>`).join("");
  $("q").oninput=e=>{const q=e.target.value.trim().toLowerCase();const f=q?D.warga_list.filter(w=>w.kode.toLowerCase()==q||w.nama.toLowerCase().includes(q)).slice(0,20):[];
-  $("ktpout").innerHTML=f.map(w=>`<div class="card"><h3>KTP Kerajaan · ${w.kode}</h3>Nama: <b>${w.nama}</b> 🔒<br>${w.tiktok?"TikTok: @"+w.tiktok+"<br>":""}Ras: <img class="ico" src="icons/ras_${w.ras.toLowerCase()}.png" alt=""> <b>${w.ras}</b>${rasTier(w.ras)} · terkunci<br>Gender: ${w.gender||"-"}<br>Pekerjaan: ${w.pekerjaan}<br>Warga sejak Day ${w.day}${w.catatan?"<br>"+w.catatan:""}</div>`).join("")||(q?"Tidak ditemukan":"")}}
+  $("ktpout").innerHTML=f.map(w=>`<div class="card"><h3>KTP Desa Viralis · ${w.kode}</h3>Nama: <b>${w.nama}</b> 🔒<br>${w.tiktok?"TikTok: @"+w.tiktok+"<br>":""}Ras: <img class="ico" src="icons/ras_${w.ras.toLowerCase()}.png" alt=""> <b>${w.ras}</b>${rasTier(w.ras)} · terkunci<br>Gender: ${w.gender||"-"}<br>Pekerjaan: ${w.pekerjaan}<br>Warga sejak Day ${w.day}${w.catatan?"<br>"+w.catatan:""}${w.petualang?"<br>Petualang rank <b>"+(w.rank||"F")+"</b>":""}${w.petualang||w.emas?`<div class="pouch">👝 Kantong gold: <b>${(w.emas||0).toLocaleString("id")}</b> 🪙</div>`:""}${typeof gelarChips=="function"?gelarChips(w.gelar_rahasia):""}</div>`).join("")||(q?"Tidak ditemukan":"")}}
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".on").forEach(x=>x.classList.remove("on"));b.classList.add("on");$(b.dataset.t).classList.add("on");if(b.dataset.t=="peta")draw()});
 fetch("data.json?"+Date.now()).then(r=>r.json()).then(d=>{D=d;cv=$("map");cx=cv.getContext("2d");ui();draw();const h=location.hash.slice(1);if(h)document.querySelector(`[data-t=${h}]`)?.click();
- initControls();initDice()});
+ initControls();initDice();window.KDN_READY=1;if(typeof initDaftar=="function")initDaftar()});
 
 function guildAda(){return D.bangunan.some(b=>b.jenis=="guild"&&b.status=="selesai")}
-function regionHTML(){const L=D.level_kerajaan||1,g=guildAda();return`<h3>🗺️ Wilayah</h3><p class="mut">Level Kerajaan: <b>${L}</b> · Adventurer Guild: <b>${g?"ada":"belum ada"}</b></p>`+
+function regionHTML(){const L=D.level_kerajaan||1,g=guildAda();return`<h3>🗺️ Wilayah</h3><p class="mut">Level Desa: <b>${L}</b> · Adventurer Guild: <b>${g?"ada":"belum ada"}</b></p>`+
  (D.regions||[]).map(x=>{const s=x.syarat;return`<div class="it" style="margin:4px 0">${x.status=="unlocked"?"🔓":"🔒"} <b>${x.nama}</b> — ${x.status=="unlocked"?"Terbuka":`Syarat: Level ≥ ${s.level_min} ${L>=s.level_min?"✅":"❌"}${s.butuh_guild?` · Adventurer Guild ${g?"✅":"❌"}`:""}`}</div>`}).join("")}
 
 function gachaList(){const G=Object.entries(D.gacha_ras||{}).filter(([k])=>k[0]!="_"),T=G.reduce((s,[,v])=>s+v.bobot,0)||1;return G.map(([k,v])=>({k,tier:v.tier,p:v.bobot/T*100}))}
@@ -55,3 +55,9 @@ function rasTier(r){const g=gachaList().find(x=>x.k==r);return g?` (${g.tier})`:
 function gachaHTML(){const L=gachaList(),gc={};(D.warga_list||[]).forEach(w=>gc[w.gender]=(gc[w.gender]||0)+1);
  return`<h3>🎲 Gacha Ras</h3><p class="mut">Ras diundi dadu 10 sisi (tiap sisi 10%); gender dipilih warga.</p><div class="grid">${L.map(x=>`<div class="it"><img class="ico" src="icons/ras_${x.k.toLowerCase()}.png" alt=""> ${x.k}<b>${x.p.toFixed(0)}%</b>${x.tier}</div>`).join("")}</div>
  <h3 style="margin-top:10px">Gender</h3><div class="grid">${(D.gender_pilihan||["Laki-laki","Perempuan"]).map(g=>`<div class="it">${g}<b>${gc[g]||0}</b></div>`).join("")}</div>`}
+
+function gelarPutra(){const L=D&&D.level_kerajaan||1,G=(D&&D.gelar)||[];let g="Kepala Desa";G.forEach(x=>{if(L>=x.level_min)g=x.gelar});return g}
+function gelarHTML(){const L=D.level_kerajaan||1,g=gelarPutra();return`<h3>🎖️ Gelar Putra</h3><p class="mut">Putra bukan raja, ia memimpin desa. Gelarnya naik bersama level kerajaan.</p><p>Sekarang: <b>${g}</b> (Level ${L})</p><div class="grid">${(D.gelar||[]).map(x=>`<div class="it" style="${x.gelar==g?"outline:2px solid #d4a72c":""}">Lv ${x.level_min}<b style="font-size:14px">${x.gelar}</b></div>`).join("")}</div>`}
+
+function papanInfo(t){const n=jumlahWarga(),L=(D.warga_list||[]).filter(w=>w.ras),cnt=k=>{const o={};L.forEach(w=>o[w[k]]=(o[w[k]]||0)+1);return Object.entries(o).map(([a,b])=>a+" "+b).join(" · ")};
+ return`<b>${t} · Papan Jumlah Warga</b><br>Total <b>${n}</b> warga (Putra + ${n-1} terdaftar)<br><span class="mut">Ras: ${cnt("ras")}<br>Pekerjaan: ${cnt("pekerjaan")}</span>`}

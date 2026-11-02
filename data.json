@@ -17,7 +17,8 @@
   "Tukang": 1,
   "Prajurit": 0,
   "Pedagang": 0,
-  "Penyihir": 0
+  "Penyihir": 0,
+  "Petualang": 0
  },
  "produksi": {
   "Petani": {
@@ -36,9 +37,8 @@
   "Pedagang": {
    "emas": 3
   },
-  "Penyihir": {
-   "emas": 1
-  }
+  "Penyihir": {},
+  "Petualang": {}
  },
  "makanPerWarga": 2,
  "sumberdaya": {
@@ -73,14 +73,15 @@
    "usulan": "Hadiah Raja"
   },
   {
-   "id": "tenda",
-   "nama": "Tenda Putra",
+   "id": "pos",
+   "nama": "Pos Desa",
    "tile": "G8",
-   "jenis": "tenda",
+   "jenis": "pos",
    "status": "selesai",
    "progres": 100,
    "day": 1,
-   "usulan": "Inisiatif Putra"
+   "usulan": "Inisiatif Putra",
+   "ukuran": 0.5
   },
   {
    "id": "api",
@@ -90,7 +91,19 @@
    "status": "selesai",
    "progres": 100,
    "day": 1,
-   "usulan": "Inisiatif Putra"
+   "usulan": "Inisiatif Putra",
+   "ukuran": 0.5
+  },
+  {
+   "id": "papan",
+   "nama": "Papan Jumlah Warga",
+   "tile": "F8",
+   "jenis": "papan",
+   "status": "selesai",
+   "progres": 100,
+   "day": 1,
+   "usulan": "Inisiatif Putra",
+   "ukuran": 0.5
   }
  ],
  "vote": {
@@ -117,7 +130,7 @@
  "berita": [
   "DAY 1: Putra menerima tanah kosong dari Raja.",
   "Pohon dan ikan melimpah di tepi sungai.",
-  "Tenda pertama berdiri di G8.",
+  "Pos Desa pertama berdiri di G8, lengkap dengan papan jumlah warga.",
   "Follow = jadi warga. Komen = usul bangunan!"
  ],
  "riwayat": [
@@ -127,7 +140,7 @@
   },
   {
    "day": 1,
-   "teks": "Tenda Putra dibangun di G8, api unggun di F9"
+   "teks": "Pos Desa dibangun di G8, papan jumlah warga di F8, api unggun di F9"
   }
  ],
  "kuota": {
@@ -138,7 +151,8 @@
   "Tukang": 60,
   "Prajurit": 50,
   "Pedagang": 40,
-  "Penyihir": 20
+  "Penyihir": 20,
+  "Petualang": 30
  },
  "level_kerajaan": 1,
  "regions": [
@@ -147,11 +161,11 @@
    "nama": "Tanah Awal",
    "c": [
     0,
-    15
+    31
    ],
    "r": [
     0,
-    15
+    31
    ],
    "status": "unlocked",
    "syarat": {
@@ -163,12 +177,12 @@
    "id": "timur",
    "nama": "Hutan Timur",
    "c": [
-    16,
-    31
+    32,
+    63
    ],
    "r": [
     0,
-    15
+    31
    ],
    "status": "locked",
    "syarat": {
@@ -181,11 +195,11 @@
    "nama": "Lembah Selatan",
    "c": [
     0,
-    15
+    31
    ],
    "r": [
-    16,
-    31
+    32,
+    63
    ],
    "status": "locked",
    "syarat": {
@@ -197,12 +211,12 @@
    "id": "jauh",
    "nama": "Tanah Jauh",
    "c": [
-    16,
-    31
+    32,
+    63
    ],
    "r": [
-    16,
-    31
+    32,
+    63
    ],
    "status": "locked",
    "syarat": {
@@ -257,5 +271,323 @@
    "Beastfolk",
    "Kurcaci"
   ]
- }
+ },
+ "gelar": [
+  {
+   "level_min": 1,
+   "gelar": "Kepala Desa"
+  },
+  {
+   "level_min": 2,
+   "gelar": "Ksatria (Baronet)"
+  },
+  {
+   "level_min": 3,
+   "gelar": "Baron"
+  },
+  {
+   "level_min": 4,
+   "gelar": "Viscount"
+  },
+  {
+   "level_min": 5,
+   "gelar": "Count"
+  },
+  {
+   "level_min": 6,
+   "gelar": "Marquis"
+  },
+  {
+   "level_min": 7,
+   "gelar": "Duke"
+  }
+ ],
+ "_gelar_catatan": "Gelar Putra mengikuti level_kerajaan. Putra bukan raja.",
+ "nama_desa": "Desa Viralis",
+ "pekerjaan_info": {
+  "_catatan": "produktif=false: tidak menghasilkan sumber daya tapi tetap makan (makanPerWarga/hari). butuh_bangunan = jenis bangunan yang harus selesai sebelum pekerjaan dibuka.",
+  "Petani": {
+   "produktif": true,
+   "butuh_bangunan": null
+  },
+  "Nelayan": {
+   "produktif": true,
+   "butuh_bangunan": null
+  },
+  "Penebang": {
+   "produktif": true,
+   "butuh_bangunan": null
+  },
+  "Tukang": {
+   "produktif": true,
+   "butuh_bangunan": null
+  },
+  "Pedagang": {
+   "produktif": true,
+   "butuh_bangunan": null
+  },
+  "Prajurit": {
+   "produktif": false,
+   "butuh_bangunan": "barak",
+   "nama_bangunan": "Barak"
+  },
+  "Penyihir": {
+   "produktif": false,
+   "butuh_bangunan": "menara",
+   "nama_bangunan": "Menara Penyihir"
+  },
+  "Petualang": {
+   "produktif": false,
+   "butuh_bangunan": "guild",
+   "nama_bangunan": "Adventurer Guild",
+   "dual": true,
+   "_catatan": "Pekerjaan ganda: warga tetap punya pekerjaan utama. kuota.Petualang = batas jumlah petualang."
+  }
+ },
+ "penalti": {
+  "_catatan": "Dicek tiap Senin 00:00 WIB. Warga dengan check-in < min_checkin dalam 7 hari terakhir dipindah ke 'jadi'. Ubah lalu jalankan: python3 admin.py sinkron Yang dipindah dapat gelar kejutan 'gelar' dan jadi Calon (tetap pekerjaan baru) yang bisa check-in lagi; begitu >= min_checkin dalam 7 hari, otomatis kembali (jika kuota ada).",
+  "Prajurit": {
+   "aktif": true,
+   "min_checkin": 3,
+   "jadi": "Petani",
+   "nama_checkin": "Apel di Barak",
+   "gelar": "desertir"
+  },
+  "Penyihir": {
+   "aktif": false,
+   "min_checkin": 3,
+   "jadi": "Petani",
+   "nama_checkin": "Latihan di Menara",
+   "gelar": "murtadsihir"
+  }
+ },
+ "dungeon": {
+  "_catatan": "Semua angka dungeon. Setelah diubah jalankan: python3 admin.py sinkron",
+  "rank": [
+   "F",
+   "E",
+   "D",
+   "C",
+   "B",
+   "A",
+   "S",
+   "SS"
+  ],
+  "gate_level": [
+   "E",
+   "D",
+   "C",
+   "B",
+   "A",
+   "S"
+  ],
+  "naik_rank_sukses": 3,
+  "peluang": {
+   "dasar": 50,
+   "per_tier_atas": 15,
+   "per_tier_bawah": 20,
+   "per_anggota_tambahan": 5,
+   "maks_bonus_anggota": 10,
+   "min": 5,
+   "maks": 95,
+   "mustahil_tier_bawah": 3
+  },
+  "party_maks": 3,
+  "emas": {
+   "E": [
+    10,
+    30
+   ],
+   "D": [
+    30,
+    80
+   ],
+   "C": [
+    80,
+    200
+   ],
+   "B": [
+    200,
+    500
+   ],
+   "A": [
+    500,
+    1200
+   ],
+   "S": [
+    1200,
+    3000
+   ]
+  },
+  "sedekah_persen": 10,
+  "luka": {
+   "peluang_persen": 10,
+   "hari": 2
+  },
+  "gate_harian": {
+   "jumlah": 3,
+   "bobot": {
+    "E": 40,
+    "D": 25,
+    "C": 15,
+    "B": 10,
+    "A": 7,
+    "S": 3
+   }
+  },
+  "raid": {
+   "kali_emas": 3,
+   "durasi_menit_default": 60
+  },
+  "notif_tanpa_quest_hari": 7,
+  "nama_gate": [
+   "Gua Lumut",
+   "Reruntuhan Sunyi",
+   "Sarang Laba-laba",
+   "Hutan Kabut",
+   "Tambang Terlupa",
+   "Kuil Retak",
+   "Rawa Hitam",
+   "Menara Patah"
+  ],
+  "durasi_menit": {
+   "E": 30,
+   "D": 60,
+   "C": 120,
+   "B": 180,
+   "A": 360,
+   "S": 720
+  },
+  "jatah_mingguan_per_level": 3
+ },
+ "gelar_kejutan": {
+  "_catatan": "Gelar rahasia: tersembunyi sampai didapat, muncul popup kejutan di situs & tampil di KTP. tipe: tanpa_quest_hari, gagal_beruntun, solo_sukses, rank_capai, clear_level, total_emas, jml_sukses, komen, vote, apel_total, manual. Komen/vote dicatat: admin.py aktivitas. Gelar manual: admin.py gelar-warga. Setelah ubah: admin.py sinkron",
+  "daftar": [
+   {
+    "id": "pemalas",
+    "nama": "Petualang Pemalas",
+    "tipe": "tanpa_quest_hari",
+    "n": 14,
+    "ket": "14 hari tanpa quest",
+    "sumber": "dungeon"
+   },
+   {
+    "id": "pingsan",
+    "nama": "Langganan Pingsan",
+    "tipe": "gagal_beruntun",
+    "n": 10,
+    "ket": "Gagal 10x berturut-turut",
+    "sumber": "dungeon"
+   },
+   {
+    "id": "serigala",
+    "nama": "Serigala Penyendiri",
+    "tipe": "solo_sukses",
+    "n": 10,
+    "ket": "10x sukses, selalu solo",
+    "sumber": "dungeon"
+   },
+   {
+    "id": "legenda",
+    "nama": "Legenda SS",
+    "tipe": "rank_capai",
+    "rank": "SS",
+    "ket": "Mencapai rank SS",
+    "sumber": "dungeon"
+   },
+   {
+    "id": "pembantai",
+    "nama": "Penakluk Gerbang S",
+    "tipe": "clear_level",
+    "level": "S",
+    "ket": "Menaklukkan gate S",
+    "sumber": "dungeon"
+   },
+   {
+    "id": "sultan",
+    "nama": "Sultan Desa",
+    "tipe": "total_emas",
+    "n": 10000,
+    "ket": "Mengumpulkan 10.000 emas",
+    "sumber": "dungeon"
+   },
+   {
+    "id": "dermawan",
+    "nama": "Si Paling Sedekah",
+    "tipe": "jml_sukses",
+    "n": 25,
+    "ket": "25 quest sukses (selalu menyumbang dana desa)",
+    "sumber": "dungeon"
+   },
+   {
+    "id": "orangdekat",
+    "nama": "Orang Dekat Pak Kades",
+    "tipe": "komen",
+    "n": 20,
+    "ket": "20 komen di TikTok",
+    "sumber": "aktivitas"
+   },
+   {
+    "id": "tukangkomen",
+    "nama": "Tukang Komen",
+    "tipe": "komen",
+    "n": 50,
+    "ket": "50 komen",
+    "sumber": "aktivitas"
+   },
+   {
+    "id": "suararakyat",
+    "nama": "Suara Rakyat",
+    "tipe": "vote",
+    "n": 10,
+    "ket": "Ikut 10 voting bangunan",
+    "sumber": "aktivitas"
+   },
+   {
+    "id": "rajinapel",
+    "nama": "Prajurit Teladan",
+    "tipe": "apel_total",
+    "n": 30,
+    "ket": "30x apel di Barak",
+    "sumber": "apel"
+   },
+   {
+    "id": "tamuistimewa",
+    "nama": "Tamu Istimewa",
+    "tipe": "manual",
+    "ket": "Diberikan langsung oleh Pak Kades",
+    "sumber": "manual"
+   },
+   {
+    "id": "penyelamatayam",
+    "nama": "Penyelamat Ayam",
+    "tipe": "manual",
+    "ket": "Diberikan langsung oleh Pak Kades",
+    "sumber": "manual"
+   },
+   {
+    "id": "desertir",
+    "nama": "Pensiunan Dini Barak",
+    "tipe": "penalti",
+    "ket": "Bolos apel, dipindah jadi Petani",
+    "sumber": "penalti"
+   },
+   {
+    "id": "murtadsihir",
+    "nama": "Penyihir Mangkir",
+    "tipe": "penalti",
+    "ket": "Bolos latihan di Menara",
+    "sumber": "penalti"
+   }
+  ]
+ },
+ "jembatan": {
+  "_catatan": "Jembatan kayu sederhana menyeberangi sungai kecil dekat Pos Desa (Episode 1).",
+  "baris": 8,
+  "kolom": [
+   7,
+   8
+  ]
+ },
+ "_ukuran_catatan": "ukuran bangunan dalam petak: 0.5 = setengah petak (pos, papan, api unggun); 1 = rumah/bangunan penuh (default)."
 }

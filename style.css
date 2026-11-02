@@ -26,3 +26,41 @@ canvas{touch-action:none;-webkit-user-select:none;user-select:none;overscroll-be
 .t-umum b{color:#4f7a3a}.t-jarang b{color:#2f6fb8}.t-langka b{color:#b0479a;text-shadow:0 0 8px #f3a6e3}
 .btn{display:block;width:100%;margin:8px 0;padding:12px;border:0;border-radius:12px;background:#2f4a3a;color:#fff;font:600 15px system-ui}.btn.ghost{background:#fbf4e2;color:#3a2e1a;border:1px dashed #b9a26f}
 .d10{width:280px;height:280px;display:block;margin:6px auto;border-radius:20px;background:radial-gradient(circle at 50% 45%,#4a2046,#1b0c1e 70%,#0e070f);box-shadow:inset 0 0 0 2px #e8c26a55}.ico{width:22px;height:22px;vertical-align:-4px}.t-sedang b{color:#2f6fb8}.t-langka b{color:#b0479a}
+/* v7 daftar warga */
+.df label{display:block;font-weight:700;margin:10px 0 4px;font-size:14px}.df input{margin-bottom:2px;border:1.5px solid #d9c9a0;background:#fffaf0;font-size:16px}
+.jobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:6px}
+.jobs button,.gsel button{position:relative;overflow:hidden;border:1.5px solid #d9c9a0;background:#fffaf0;border-radius:10px;padding:8px 6px;color:#3a2e1a;font:inherit;text-align:left}
+.jobs button b{display:block;font-size:14px}.jobs button span{font-size:12px;opacity:.75}.jobs button i{position:absolute;left:0;bottom:0;height:4px;background:#d4a72c}
+.jobs button.on,.gsel button.on{background:#2f4a3a;color:#fbf4e2;border-color:#2f4a3a}.jobs button:disabled{opacity:.4}
+.gsel{display:flex;gap:6px}.gsel button{flex:1;text-align:center;font-weight:700}
+.err{color:#b4372a;font-weight:700;margin-top:6px;min-height:1em}.btn:disabled{opacity:.6}
+.ktpbig{border:2px solid #d4a72c!important}.ktprow{display:flex;gap:12px;align-items:center;line-height:1.6}.ktpimg{width:64px;height:64px;background:#efe3c4;border-radius:12px;padding:6px}
+header .gl{font-size:12px}@media(max-width:420px){header{gap:8px;font-size:13px}nav button{padding:10px 4px;font-size:13px}}
+
+header .seri{display:block;font-size:10px;font-weight:500;opacity:.75}
+.jobs button em{display:block;font-size:10px;font-style:normal;opacity:.7;margin-top:2px}.jobs button.kunci{opacity:.75;background:#eee5cf}.jobs button.kunci span{color:#9a4b2a;font-weight:600}
+.apel{border:2px solid #2f4a3a!important}.dots{display:flex;gap:6px;margin:6px 0}.dots i{width:22px;height:22px;border-radius:50%;background:#e3d6b4;border:2px solid #c9b78a}.dots i.on{background:#2f4a3a;border-color:#2f4a3a}
+/* v9 guild */
+.notif{background:#fff1c9;border:2px solid #d4a72c;border-radius:10px;padding:10px;margin-bottom:10px;font-weight:700}
+.lv{display:inline-block;min-width:26px;text-align:center;color:#fff;font-weight:800;border-radius:7px;padding:2px 6px;font-size:13px}
+.guildtop .it .lv{font-size:18px;margin-left:4px}.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.chip{background:#2f4a3a;color:#fbf4e2;border-radius:20px;padding:3px 10px;font-size:12px;font-weight:600}
+.gate{display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px dashed #d9c9a0}.gate .lv{font-size:16px;min-width:32px;padding:6px}.gate .gi{flex:1;min-width:0}.gate .gi b{display:block}.gate .gi .mut{font-size:12px}
+.gate.done{opacity:.5}.pbar{height:6px;background:#e8dcbc;border-radius:3px;overflow:hidden;margin-top:4px}.pbar i{display:block;height:100%}.pc{font-weight:800;font-size:15px;min-width:52px;text-align:right}
+.btn.sm{padding:6px 10px;font-size:13px;width:auto;margin:0}.row{display:flex;gap:6px;margin-top:8px}.row input{margin:0;flex:1}.row .btn{width:auto;margin:0}
+.mem{padding:4px 0}.raid{border:2px solid #c8503c!important}code{background:#2f4a3a;color:#ffd86b;padding:2px 8px;border-radius:6px;letter-spacing:2px}
+.ovl{position:fixed;inset:0;background:#0009;display:flex;align-items:center;justify-content:center;z-index:50;padding:20px;animation:fi .3s}
+.ovl .box{background:#fbf4e2;border-radius:16px;padding:20px;max-width:360px;width:100%;text-align:center;border:3px solid #d4a72c;position:relative;overflow:hidden}
+.ovl h2{margin:6px 0;color:#2f4a3a}.portal{width:120px;height:120px;margin:10px auto;border-radius:50%;background:conic-gradient(#6b3fa0,#2a9fd6,#6b3fa0,#d4a72c,#6b3fa0);animation:spin 1s linear infinite;box-shadow:0 0 30px #6b3fa0}
+.res{font-size:72px;animation:pop .5s}.gold{color:#b8860b;font-size:20px}
+.surprise .box{animation:pop .6s}.medal{font-size:80px;animation:pop .7s,wob 1.5s .7s infinite}.gname{font-size:24px;background:linear-gradient(90deg,#b8860b,#ffd86b,#b8860b);-webkit-background-clip:text;color:transparent}
+.confetti i{position:absolute;top:-10px;width:8px;height:14px;border-radius:2px;animation:fall 2.5s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes pop{0%{transform:scale(.3);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+@keyframes wob{50%{transform:rotate(-8deg)}}@keyframes fall{to{transform:translateY(420px) rotate(540deg)}}@keyframes fi{from{opacity:0}}
+nav{overflow-x:auto}nav button{white-space:nowrap}
+.inrun{border:2px solid #6b3fa0!important}.cd{font-size:30px;font-weight:800;text-align:center;color:#6b3fa0;font-variant-numeric:tabular-nums;margin:6px 0}.pbar.big{height:10px}
+.jatah{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.jatah div{background:#fffaf0;border:1px solid #d9c9a0;border-radius:8px;padding:6px;text-align:center}.jatah b{display:block;font-size:16px}.jatah .mut{font-size:11px}
+.pouch{margin-top:8px;background:#fff1c9;border:1.5px solid #d4a72c;border-radius:10px;padding:6px 10px;display:inline-block}
+.akun input{margin-bottom:6px;border:1.5px solid #d9c9a0;background:#fffaf0;font-size:16px}.pinrow{display:flex;gap:6px}.pinrow input{flex:1;letter-spacing:4px;text-align:center}
+.lnk{display:inline-block;margin-top:6px;color:#2f4a3a;font-weight:700}.akun.in{border:2px solid #2f4a3a!important}.akrow{display:flex;align-items:center;gap:8px;justify-content:space-between}.akrow .btn{width:auto}
+.setpin{margin-top:10px;border-top:1px dashed #d9c9a0;padding-top:8px}
+.ktpintip .ktpbig p.mut{display:none}
