@@ -64,3 +64,5 @@ nav{overflow-x:auto}nav button{white-space:nowrap}
 .lnk{display:inline-block;margin-top:6px;color:#2f4a3a;font-weight:700}.akun.in{border:2px solid #2f4a3a!important}.akrow{display:flex;align-items:center;gap:8px;justify-content:space-between}.akrow .btn{width:auto}
 .setpin{margin-top:10px;border-top:1px dashed #d9c9a0;padding-top:8px}
 .ktpintip .ktpbig p.mut{display:none}
+
+header .jamw{display:flex;flex-direction:column;align-items:flex-end;line-height:1.1;white-space:nowrap}header .jamw b{font-variant-numeric:tabular-nums;font-size:14px}header .jamw small{font-size:10px;opacity:.85}@media(max-width:420px){header .jamw b{font-size:12px}}
