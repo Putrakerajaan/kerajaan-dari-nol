@@ -1,20 +1,261 @@
 {
- "day": 1, "diperbarui": "2026-11-02 17:00",
+ "day": 1,
+ "diperbarui": "2026-11-02 17:00",
  "warga": 1,
- "ras": {"Manusia":1,"Elf":0,"Kurcaci":0,"Goblin":0,"Beastfolk":0},
- "pekerjaan": {"Petani":0,"Nelayan":0,"Penebang":0,"Tukang":1,"Prajurit":0,"Pedagang":0,"Penyihir":0},
- "produksi": {"Petani":{"gandum":4},"Nelayan":{"ikan":4},"Penebang":{"kayu":5},"Tukang":{"batu":2},"Prajurit":{},"Pedagang":{"emas":3},"Penyihir":{"emas":1}},
+ "ras": {
+  "Manusia": 1,
+  "Orc": 0,
+  "Goblin": 0,
+  "Beastfolk": 0,
+  "Kurcaci": 0,
+  "Elf": 0
+ },
+ "pekerjaan": {
+  "Petani": 0,
+  "Nelayan": 0,
+  "Penebang": 0,
+  "Tukang": 1,
+  "Prajurit": 0,
+  "Pedagang": 0,
+  "Penyihir": 0
+ },
+ "produksi": {
+  "Petani": {
+   "gandum": 4
+  },
+  "Nelayan": {
+   "ikan": 4
+  },
+  "Penebang": {
+   "kayu": 5
+  },
+  "Tukang": {
+   "batu": 2
+  },
+  "Prajurit": {},
+  "Pedagang": {
+   "emas": 3
+  },
+  "Penyihir": {
+   "emas": 1
+  }
+ },
  "makanPerWarga": 2,
- "sumberdaya": {"kayu":10,"batu":0,"ikan":6,"gandum":0,"emas":5},
+ "sumberdaya": {
+  "kayu": 10,
+  "batu": 0,
+  "ikan": 6,
+  "gandum": 0,
+  "emas": 5
+ },
  "kas": 5,
- "warga_list": [{"kode":"KDN-0001","nama":"Putra","ras":"Manusia","pekerjaan":"Tukang","day":1,"catatan":"Penyelamat mahkota Raja dari ayam"}],
- "bangunan": [
-  {"id":"panji","nama":"Panji Kerajaan","tile":"B16","jenis":"panji","status":"selesai","progres":100,"day":1,"usulan":"Hadiah Raja"},
-  {"id":"tenda","nama":"Tenda Putra","tile":"G8","jenis":"tenda","status":"selesai","progres":100,"day":1,"usulan":"Inisiatif Putra"},
-  {"id":"api","nama":"Api Unggun","tile":"F9","jenis":"api","status":"selesai","progres":100,"day":1,"usulan":"Inisiatif Putra"}
+ "warga_list": [
+  {
+   "kode": "KDN-0001",
+   "nama": "Putra",
+   "ras": "Manusia",
+   "pekerjaan": "Tukang",
+   "day": 1,
+   "catatan": "Penyelamat mahkota Raja dari ayam",
+   "gender": "Laki-laki",
+   "dadu_sisi": 1
+  }
  ],
- "vote": {"judul":"Bangun apa dulu? Komen di TikTok, like terbanyak menang!","opsi":[
-  {"nama":"Rumah Kayu","like":0},{"nama":"Dermaga Ikan","like":0},{"nama":"Ladang Gandum","like":0},{"nama":"Jembatan ke Seberang","like":0}]},
- "berita": ["DAY 1: Putra menerima tanah kosong dari Raja.","Pohon dan ikan melimpah di tepi sungai.","Tenda pertama berdiri di G8.","Follow = jadi warga. Komen = usul bangunan!"],
- "riwayat": [{"day":1,"teks":"Panji Kerajaan ditancapkan di B16"},{"day":1,"teks":"Tenda Putra dibangun di G8, api unggun di F9"}]
+ "bangunan": [
+  {
+   "id": "panji",
+   "nama": "Panji Kerajaan",
+   "tile": "B16",
+   "jenis": "panji",
+   "status": "selesai",
+   "progres": 100,
+   "day": 1,
+   "usulan": "Hadiah Raja"
+  },
+  {
+   "id": "tenda",
+   "nama": "Tenda Putra",
+   "tile": "G8",
+   "jenis": "tenda",
+   "status": "selesai",
+   "progres": 100,
+   "day": 1,
+   "usulan": "Inisiatif Putra"
+  },
+  {
+   "id": "api",
+   "nama": "Api Unggun",
+   "tile": "F9",
+   "jenis": "api",
+   "status": "selesai",
+   "progres": 100,
+   "day": 1,
+   "usulan": "Inisiatif Putra"
+  }
+ ],
+ "vote": {
+  "judul": "Bangun apa dulu? Komen di TikTok, like terbanyak menang!",
+  "opsi": [
+   {
+    "nama": "Rumah Kayu",
+    "like": 0
+   },
+   {
+    "nama": "Dermaga Ikan",
+    "like": 0
+   },
+   {
+    "nama": "Ladang Gandum",
+    "like": 0
+   },
+   {
+    "nama": "Jembatan ke Seberang",
+    "like": 0
+   }
+  ]
+ },
+ "berita": [
+  "DAY 1: Putra menerima tanah kosong dari Raja.",
+  "Pohon dan ikan melimpah di tepi sungai.",
+  "Tenda pertama berdiri di G8.",
+  "Follow = jadi warga. Komen = usul bangunan!"
+ ],
+ "riwayat": [
+  {
+   "day": 1,
+   "teks": "Panji Kerajaan ditancapkan di B16"
+  },
+  {
+   "day": 1,
+   "teks": "Tenda Putra dibangun di G8, api unggun di F9"
+  }
+ ],
+ "kuota": {
+  "_catatan": "Batas maksimal warga per pekerjaan. Ubah angkanya sesuka hati.",
+  "Petani": 100,
+  "Nelayan": 80,
+  "Penebang": 80,
+  "Tukang": 60,
+  "Prajurit": 50,
+  "Pedagang": 40,
+  "Penyihir": 20
+ },
+ "level_kerajaan": 1,
+ "regions": [
+  {
+   "id": "awal",
+   "nama": "Tanah Awal",
+   "c": [
+    0,
+    15
+   ],
+   "r": [
+    0,
+    15
+   ],
+   "status": "unlocked",
+   "syarat": {
+    "level_min": 1,
+    "butuh_guild": false
+   }
+  },
+  {
+   "id": "timur",
+   "nama": "Hutan Timur",
+   "c": [
+    16,
+    31
+   ],
+   "r": [
+    0,
+    15
+   ],
+   "status": "locked",
+   "syarat": {
+    "level_min": 3,
+    "butuh_guild": true
+   }
+  },
+  {
+   "id": "selatan",
+   "nama": "Lembah Selatan",
+   "c": [
+    0,
+    15
+   ],
+   "r": [
+    16,
+    31
+   ],
+   "status": "locked",
+   "syarat": {
+    "level_min": 5,
+    "butuh_guild": true
+   }
+  },
+  {
+   "id": "jauh",
+   "nama": "Tanah Jauh",
+   "c": [
+    16,
+    31
+   ],
+   "r": [
+    16,
+    31
+   ],
+   "status": "locked",
+   "syarat": {
+    "level_min": 8,
+    "butuh_guild": true
+   }
+  }
+ ],
+ "_catatan_regions": "c/r = rentang kolom/baris petak (0-31). Buka lewat: python3 admin.py buka <id>. Guild = bangunan jenis 'guild' status selesai.",
+ "gacha_ras": {
+  "_catatan": "Otomatis dari dadu_d10 (jumlah sisi x 10%). Ubah lewat dadu_d10.sisi.",
+  "Manusia": {
+   "bobot": 3,
+   "tier": "umum"
+  },
+  "Orc": {
+   "bobot": 2,
+   "tier": "sedang"
+  },
+  "Goblin": {
+   "bobot": 2,
+   "tier": "sedang"
+  },
+  "Beastfolk": {
+   "bobot": 1,
+   "tier": "langka"
+  },
+  "Kurcaci": {
+   "bobot": 1,
+   "tier": "langka"
+  },
+  "Elf": {
+   "bobot": 1,
+   "tier": "langka"
+  }
+ },
+ "gender_pilihan": [
+  "Laki-laki",
+  "Perempuan"
+ ],
+ "dadu_d10": {
+  "_catatan": "Dadu ras 10 sisi. Urutan = sisi 1..10. Peluang & tier dihitung dari jumlah sisi (3=umum, 2=sedang, 1=langka).",
+  "sisi": [
+   "Manusia",
+   "Orc",
+   "Manusia",
+   "Goblin",
+   "Elf",
+   "Orc",
+   "Manusia",
+   "Goblin",
+   "Beastfolk",
+   "Kurcaci"
+  ]
+ }
 }

@@ -12,3 +12,17 @@ body{background:#f4ecd8;color:#3a2e1a}header{background:#2f4a3a;border:0;color:#
 nav{background:#fbf4e2;border-top:1px solid #e2d6b8}nav button{color:#5a4a30}nav .on{background:#2f4a3a;color:#fbf4e2;border-radius:16px}
 canvas{background:#e9e3c4}#tip{background:#fbf4e2;color:#3a2e1a;border-radius:14px;box-shadow:0 2px 6px #0002}
 .card,#info>div{background:#fbf4e2;border:1px solid #e2d6b8;box-shadow:0 1px 4px #0001}h3{color:#2f4a3a}.it{background:#f1e6cc}.plus{color:#3d8a3d}.min{color:#c4453a}.bar{background:#e2d6b8}.bar i{background:#e2a33b}
+
+#zoombtn{position:absolute;right:12px;bottom:14px;display:flex;flex-direction:column;gap:8px}#zoombtn button{width:44px;height:44px;border-radius:50%;border:0;background:#fbf4e2;color:#3a2e1a;font:700 24px system-ui;box-shadow:0 2px 6px #0003}
+canvas{touch-action:none;-webkit-user-select:none;user-select:none;overscroll-behavior:contain}
+
+.dadu{margin-top:12px;text-align:center}.scene{width:120px;height:120px;margin:22px auto;perspective:600px;transition:filter .4s}
+.cube{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 2.1s cubic-bezier(.15,.75,.2,1);transform:rotateX(-20deg) rotateY(30deg)}
+.face{position:absolute;inset:0;border-radius:18px;background:linear-gradient(145deg,#fffaf0,#efe2c4);border:2px solid #d9c49a;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:inset 0 0 18px #c9ae7a66;backface-visibility:hidden}
+.face span{font-size:46px;line-height:1}.face small{font:700 12px system-ui;color:#5a4526;margin-top:4px}
+.f0{transform:translateZ(60px)}.f1{transform:rotateY(90deg) translateZ(60px)}.f2{transform:rotateY(180deg) translateZ(60px)}.f3{transform:rotateY(-90deg) translateZ(60px)}.f4{transform:rotateX(90deg) translateZ(60px)}.f5{transform:rotateX(-90deg) translateZ(60px)}
+.scene.glow{filter:drop-shadow(0 0 14px #ffd86b) drop-shadow(0 0 4px #fff3)}
+.dres{min-height:40px;opacity:.7;transition:all .4s}.dres.show{opacity:1;transform:scale(1.06)}.dres b{font-size:20px}
+.t-umum b{color:#4f7a3a}.t-jarang b{color:#2f6fb8}.t-langka b{color:#b0479a;text-shadow:0 0 8px #f3a6e3}
+.btn{display:block;width:100%;margin:8px 0;padding:12px;border:0;border-radius:12px;background:#2f4a3a;color:#fff;font:600 15px system-ui}.btn.ghost{background:#fbf4e2;color:#3a2e1a;border:1px dashed #b9a26f}
+.d10{width:280px;height:280px;display:block;margin:6px auto;border-radius:20px;background:radial-gradient(circle at 50% 45%,#4a2046,#1b0c1e 70%,#0e070f);box-shadow:inset 0 0 0 2px #e8c26a55}.ico{width:22px;height:22px;vertical-align:-4px}.t-sedang b{color:#2f6fb8}.t-langka b{color:#b0479a}

@@ -1,8 +1,8 @@
 // Kerajaan dari Nol – peta isometrik Canvas 2D (kode orisinal)
-const N=16,COLS="ABCDEFGHIJKLMNOP",TW=64,TH=32;let D,cv,cx,cam={x:0,y:0,z:Math.min(1,innerWidth/(N*TW+40))},sel=null;
+const N=32,COLS=[..."ABCDEFGHIJKLMNOPQRSTUVWXYZ",..."ABCDEF"].map((x,i)=>i<26?x:"A"+x),TW=64,TH=32;let D,cv,cx,cam={x:0,y:0,z:Math.min(1,innerWidth/(N*TW+40))},sel=null;
 const $=id=>document.getElementById(id);
 const ICON={kayu:"🪵",batu:"🪨",ikan:"🐟",gandum:"🌾",emas:"🪙"};
-function parseTile(t){return{c:COLS.indexOf(t[0]),r:parseInt(t.slice(1))-1}}
+function parseTile(t){const m=t.match(/^([A-Z]+)(\d+)$/);return{c:COLS.indexOf(m[1]),r:parseInt(m[2])-1}}
 function iso(c,r){return{x:(c-r)*TW/2,y:(c+r)*TH/2}}
 function terrain(c,r){if(c==7||c==8)return"air";const h=(c*7+r*13)%11;return h<3?"pohon":h==5?"batu":"rumput"}
 function balance(){const p={kayu:0,batu:0,ikan:0,gandum:0,emas:0};for(const[j,n]of Object.entries(D.pekerjaan))for(const[k,v]of Object.entries(D.produksi[j]||{}))p[k]+=v*n;
@@ -36,13 +36,22 @@ function ui(){$("day").textContent=D.day;$("warga").textContent=D.warga.toLocale
  $("res").innerHTML=`<h3>Sumber Daya & Kas Kerajaan</h3><div class="grid">${Object.entries(D.sumberdaya).map(([k,v])=>`<div class="it">${ICON[k]} ${k}<b>${v}</b><span class="plus">+${B.p[k]}/hari</span></div>`).join("")}<div class="it">💰 Kas<b>${D.kas}</b>emas</div></div>
  <h3 style="margin-top:12px">Makanan Warga</h3><div class="grid"><div class="it">Kebutuhan<b>${B.makan}/hari</b>${D.makanPerWarga} per warga</div><div class="it">Produksi pangan<b>${B.food}/hari</b>ikan+gandum</div><div class="it">Neraca<b class="${B.net>=0?"plus":"min"}">${B.net>=0?"+":""}${B.net}</b>${B.net>=0?"Surplus":"Defisit"}</div><div class="it">Stok cukup<b>${B.hari}</b></div></div>`;
  const tot=D.vote.opsi.reduce((a,o)=>a+o.like,0)||1;$("vote").innerHTML=`<h3>🗳️ Voting Bangunan Berikutnya</h3><p class="mut">${D.vote.judul}</p>`+D.vote.opsi.map(o=>`<div>${o.nama} — ${o.like} like<div class="bar"><i style="width:${o.like/tot*100}%"></i></div></div>`).join("");
- $("pop").innerHTML=`<h3>Penduduk</h3><div class="grid">${Object.entries(D.ras).map(([k,v])=>`<div class="it">${k}<b>${v}</b></div>`).join("")}</div><h3 style="margin-top:10px">Pekerjaan</h3><div class="grid">${Object.entries(D.pekerjaan).map(([k,v])=>`<div class="it">${k}<b>${v}</b></div>`).join("")}</div>`;
+ $("pop").innerHTML=regionHTML()+gachaHTML()+`<h3>Penduduk</h3><div class="grid">${Object.entries(D.ras).map(([k,v])=>`<div class="it">${k}<b>${v}</b></div>`).join("")}</div><h3 style="margin-top:10px">Pekerjaan</h3><div class="grid">${Object.entries(D.pekerjaan).map(([k,v])=>{const q=(D.kuota||{})[k];return`<div class="it">${k}<b class="${q&&v>=q?"min":""}">${v}${q?"/"+q:""}</b>${q&&v>=q?"Penuh":""}</div>`}).join("")}</div>`;
  $("berita").innerHTML="<h3>📜 Berita Kerajaan</h3><ul>"+D.berita.map(b=>`<li>${b}</li>`).join("")+"</ul>";
  $("bang").innerHTML="<h3>🏗️ Bangunan</h3>"+D.bangunan.map(b=>`<div>${b.tile} · ${b.nama} — ${b.status} ${b.progres}%<div class="bar"><i style="width:${b.progres}%"></i></div></div>`).join("");
  $("riw").innerHTML=D.riwayat.map(r=>`<li><b>Day ${r.day}</b> — ${r.teks}</li>`).join("");
  $("q").oninput=e=>{const q=e.target.value.trim().toLowerCase();const f=q?D.warga_list.filter(w=>w.kode.toLowerCase()==q||w.nama.toLowerCase().includes(q)).slice(0,20):[];
-  $("ktpout").innerHTML=f.map(w=>`<div class="card"><h3>KTP Kerajaan · ${w.kode}</h3>Nama: <b>${w.nama}</b><br>Ras: ${w.ras}<br>Pekerjaan: ${w.pekerjaan}<br>Warga sejak Day ${w.day}${w.catatan?"<br>"+w.catatan:""}</div>`).join("")||(q?"Tidak ditemukan":"")}}
+  $("ktpout").innerHTML=f.map(w=>`<div class="card"><h3>KTP Kerajaan · ${w.kode}</h3>Nama: <b>${w.nama}</b> 🔒<br>${w.tiktok?"TikTok: @"+w.tiktok+"<br>":""}Ras: <img class="ico" src="icons/ras_${w.ras.toLowerCase()}.png" alt=""> <b>${w.ras}</b>${rasTier(w.ras)} · terkunci<br>Gender: ${w.gender||"-"}<br>Pekerjaan: ${w.pekerjaan}<br>Warga sejak Day ${w.day}${w.catatan?"<br>"+w.catatan:""}</div>`).join("")||(q?"Tidak ditemukan":"")}}
 document.querySelectorAll("nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".on").forEach(x=>x.classList.remove("on"));b.classList.add("on");$(b.dataset.t).classList.add("on");if(b.dataset.t=="peta")draw()});
 fetch("data.json?"+Date.now()).then(r=>r.json()).then(d=>{D=d;cv=$("map");cx=cv.getContext("2d");ui();draw();const h=location.hash.slice(1);if(h)document.querySelector(`[data-t=${h}]`)?.click();
- let drag=null,moved=0;cv.onpointerdown=e=>{drag={x:e.clientX,y:e.clientY};moved=0};cv.onpointermove=e=>{if(!drag)return;cam.x+=(e.clientX-drag.x)*devicePixelRatio;cam.y+=(e.clientY-drag.y)*devicePixelRatio;moved+=Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y);drag={x:e.clientX,y:e.clientY};draw()};
- cv.onpointerup=e=>{if(moved<6)tap(e);drag=null};cv.onwheel=e=>{e.preventDefault();cam.z=Math.min(3,Math.max(.4,cam.z*(e.deltaY<0?1.1:.9)));draw()};onresize=draw});
+ initControls();initDice()});
+
+function guildAda(){return D.bangunan.some(b=>b.jenis=="guild"&&b.status=="selesai")}
+function regionHTML(){const L=D.level_kerajaan||1,g=guildAda();return`<h3>🗺️ Wilayah</h3><p class="mut">Level Kerajaan: <b>${L}</b> · Adventurer Guild: <b>${g?"ada":"belum ada"}</b></p>`+
+ (D.regions||[]).map(x=>{const s=x.syarat;return`<div class="it" style="margin:4px 0">${x.status=="unlocked"?"🔓":"🔒"} <b>${x.nama}</b> — ${x.status=="unlocked"?"Terbuka":`Syarat: Level ≥ ${s.level_min} ${L>=s.level_min?"✅":"❌"}${s.butuh_guild?` · Adventurer Guild ${g?"✅":"❌"}`:""}`}</div>`}).join("")}
+
+function gachaList(){const G=Object.entries(D.gacha_ras||{}).filter(([k])=>k[0]!="_"),T=G.reduce((s,[,v])=>s+v.bobot,0)||1;return G.map(([k,v])=>({k,tier:v.tier,p:v.bobot/T*100}))}
+function rasTier(r){const g=gachaList().find(x=>x.k==r);return g?` (${g.tier})`:""}
+function gachaHTML(){const L=gachaList(),gc={};(D.warga_list||[]).forEach(w=>gc[w.gender]=(gc[w.gender]||0)+1);
+ return`<h3>🎲 Gacha Ras</h3><p class="mut">Ras diundi dadu 10 sisi (tiap sisi 10%); gender dipilih warga.</p><div class="grid">${L.map(x=>`<div class="it"><img class="ico" src="icons/ras_${x.k.toLowerCase()}.png" alt=""> ${x.k}<b>${x.p.toFixed(0)}%</b>${x.tier}</div>`).join("")}</div>
+ <h3 style="margin-top:10px">Gender</h3><div class="grid">${(D.gender_pilihan||["Laki-laki","Perempuan"]).map(g=>`<div class="it">${g}<b>${gc[g]||0}</b></div>`).join("")}</div>`}
