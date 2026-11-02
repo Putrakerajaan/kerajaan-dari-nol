@@ -1,0 +1,174 @@
+{
+ "frameW": 96,
+ "frameH": 144,
+ "scale": 3,
+ "anchor": [
+  48,
+  135
+ ],
+ "draw": 1.25,
+ "rows": {
+  "SE": 0,
+  "SW": 1,
+  "NE": 2,
+  "NW": 3
+ },
+ "idle": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "idleFps": 2.5,
+ "walk": [
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11
+ ],
+ "framesPerTile": 8,
+ "races": {
+  "Manusia": {
+   "l": {
+    "variants": {
+     "base": "manusia_l_base.png",
+     "v1": "manusia_l_v1.png",
+     "v2": "manusia_l_v2.png",
+     "v3": "manusia_l_v3.png"
+    },
+    "overlays": {
+     "Petani": "overlay_petani_manusia_l.png"
+    }
+   },
+   "p": {
+    "variants": {
+     "base": "manusia_p_base.png",
+     "v1": "manusia_p_v1.png",
+     "v2": "manusia_p_v2.png",
+     "v3": "manusia_p_v3.png"
+    },
+    "overlays": {
+     "Petani": "overlay_petani_manusia_p.png"
+    }
+   }
+  },
+  "Orc": {
+   "l": {
+    "variants": {
+     "base": "orc_l_base.png",
+     "v1": "orc_l_v1.png",
+     "v2": "orc_l_v2.png"
+    },
+    "overlays": {
+     "Petani": "overlay_petani_orc_l.png"
+    }
+   },
+   "p": {
+    "variants": {
+     "base": "orc_p_base.png",
+     "v1": "orc_p_v1.png",
+     "v2": "orc_p_v2.png"
+    },
+    "overlays": {
+     "Petani": "overlay_petani_orc_p.png"
+    }
+   }
+  },
+  "Goblin": {
+   "l": {
+    "variants": {
+     "base": "goblin_l_base.png",
+     "v1": "goblin_l_v1.png",
+     "v2": "goblin_l_v2.png"
+    },
+    "overlays": {
+     "Petani": "overlay_petani_goblin_l.png"
+    }
+   },
+   "p": {
+    "variants": {
+     "base": "goblin_p_base.png",
+     "v1": "goblin_p_v1.png",
+     "v2": "goblin_p_v2.png"
+    },
+    "overlays": {
+     "Petani": "overlay_petani_goblin_p.png"
+    }
+   }
+  },
+  "Beastfolk": {
+   "l": {
+    "variants": {
+     "base": "beastfolk_l_base.png",
+     "v1": "beastfolk_l_v1.png",
+     "v2": "beastfolk_l_v2.png"
+    },
+    "overlays": {
+     "Petani": "overlay_petani_beastfolk_l.png"
+    }
+   },
+   "p": {
+    "variants": {
+     "base": "beastfolk_p_base.png",
+     "v1": "beastfolk_p_v1.png",
+     "v2": "beastfolk_p_v2.png"
+    },
+    "overlays": {
+     "Petani": "overlay_petani_beastfolk_p.png"
+    }
+   }
+  },
+  "Kurcaci": {
+   "l": {
+    "variants": {
+     "base": "kurcaci_l_base.png",
+     "v1": "kurcaci_l_v1.png",
+     "v2": "kurcaci_l_v2.png"
+    },
+    "overlays": {
+     "Petani": "overlay_petani_kurcaci_l.png"
+    }
+   },
+   "p": {
+    "variants": {
+     "base": "kurcaci_p_base.png",
+     "v1": "kurcaci_p_v1.png",
+     "v2": "kurcaci_p_v2.png"
+    },
+    "overlays": {
+     "Petani": "overlay_petani_kurcaci_p.png"
+    }
+   }
+  },
+  "Elf": {
+   "l": {
+    "variants": {
+     "base": "elf_l_base.png",
+     "v1": "elf_l_v1.png",
+     "v2": "elf_l_v2.png"
+    },
+    "overlays": {
+     "Petani": "overlay_petani_elf_l.png"
+    }
+   },
+   "p": {
+    "variants": {
+     "base": "elf_p_base.png",
+     "v1": "elf_p_v1.png",
+     "v2": "elf_p_v2.png"
+    },
+    "overlays": {
+     "Petani": "overlay_petani_elf_p.png"
+    }
+   }
+  }
+ },
+ "gender": {
+  "Laki-laki": "l",
+  "Perempuan": "p"
+ }
+}
