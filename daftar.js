@@ -1,5 +1,5 @@
 // Daftar Warga via Appwrite (hanya endpoint + project ID; tidak ada kunci rahasia di sini)
-const AW={ep:"https://sgp.cloud.appwrite.io/v1",pid:"6ae8a7c6003d90acacbe",db:"kdn"};
+const AW={ep:"https://sgp.cloud.appwrite.io/v1",pid:"6aeb16eb00259d49f3a6",db:"kdn"};
 let awDB,awFn,KUOTA={},dfJob=null,dfGender="Laki-laki",dfBusy=false;
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function gelarNama(ids){const L=(D.gelar_kejutan||{}).daftar||[];return String(ids||'').split(',').filter(Boolean).map(i=>i.startsWith('m:')?i.slice(2):(L.find(x=>x.id==i)||{}).nama).filter(Boolean)}
